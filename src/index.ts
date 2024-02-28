@@ -14,7 +14,7 @@ const initializer: RivetPluginInitializer = (rivet) => {
   // The plugin object is the definition for your plugin.
   const plugin: RivetPlugin = {
     // The ID of your plugin should be unique across all plugins.
-    id: "rivet-plugin-pdf2md",
+    id: "pdf2md",
 
     // The name of the plugin is what is displayed in the Rivet UI.
     name: "PDF to Markdown",
