@@ -115,7 +115,7 @@ var initializer = (rivet) => {
   const node = PDF2MarkdownNode_default(rivet);
   const plugin = {
     // The ID of your plugin should be unique across all plugins.
-    id: "rivet-plugin-pdf2md",
+    id: "pdf2md",
     // The name of the plugin is what is displayed in the Rivet UI.
     name: "PDF to Markdown",
     // Define all configuration settings in the configSpec object.
