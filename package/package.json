@@ -1,7 +1,7 @@
 {
   "name": "rivet-plugin-pdf2md",
   "packageManager": "yarn@3.5.0",
-  "version": "0.0.8",
+  "version": "0.0.3",
   "type": "module",
   "main": "dist/bundle.js",
   "files": [
@@ -12,12 +12,12 @@
     "dev": "run-p watch:tsc watch:esbuild:sync",
     "watch:tsc": "tsc -b -w --preserveWatchOutput",
     "watch:esbuild": "tsx bundle.ts --watch",
-    "watch:esbuild:sync": "tsx bundle.ts --watch --sync"
+    "watch:esbuild:sync": "tsx bundle.ts --watch --sync",
+    "postinstall": "npm install canvas @opendocsg/pdf2md"
   },
   "dependencies": {
     "@ironclad/rivet-core": "latest",
-    "@opendocsg/pdf2md": "^0.1.28",
-    "canvas": "^2.11.2"
+    "@opendocsg/pdf2md": "^0.1.28"
   },
   "devDependencies": {
     "esbuild": "^0.19.2",
