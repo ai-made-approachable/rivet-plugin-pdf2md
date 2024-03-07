@@ -112,7 +112,7 @@ export default function (rivet: typeof Rivet) {
         group: "Document Conversion",
         infoBoxBody:
           "This nodes reads a PDF file and converts it to markdown using the pdf2md library.",
-        infoBoxTitle: "Converts a PDF documents to Markdown",
+        infoBoxTitle: "Converts PDF documents to Markdown",
       };
     },
 
