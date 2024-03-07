@@ -18,7 +18,8 @@
     "@ironclad/rivet-core": "latest",
     "@opendocsg/pdf2md": "^0.1.28",
     "canvas": "^2.11.2",
-    "node-html-markdown": "^1.3.0"
+    "node-html-markdown": "^1.3.0",
+    "pdfjs-dist": "^4.0.379"
   },
   "devDependencies": {
     "esbuild": "^0.19.2",
