@@ -90,7 +90,7 @@ const isomorphicBundleOptions: esbuild.BuildOptions = {
   target: "es2020",
   outfile: "dist/bundle.js",
   format: "esm",
-  external: ["./src/nodeEntry", "pdfjs-dist", "canvas"],
+  external: ["./src/nodeEntry", "pdfjs-dist", "canvas", "node-html-markdown"],
   plugins: [rewriteNodeEntryPlugin],
 };
 
@@ -101,7 +101,7 @@ const nodeBundleOptions = {
   target: "es2020",
   outfile: "dist/nodeEntry.cjs",
   format: "cjs",
-  external: ["pdfjs-dist", "canvas"],
+  external: ["pdfjs-dist", "canvas", "node-html-markdown"],
   plugins: [] as esbuild.Plugin[],
 } satisfies esbuild.BuildOptions;
 

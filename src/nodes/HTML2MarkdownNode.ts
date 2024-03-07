@@ -21,13 +21,13 @@ import type {
 } from "@ironclad/rivet-core";
 
 // This defines your new type of node.
-export type PDF2MarkdownNode = ChartNode<
-  "PDF2Markdown",
-  PDF2MarkdownNodeData
+export type HTML2MarkdownNode = ChartNode<
+  "HTML2Markdown",
+  HTML2MarkdownNodeData
 >;
 
 // This defines the data that your new node will store.
-export type PDF2MarkdownNodeData = {
+export type HTML2MarkdownNodeData = {
   /** The path to the python script to run. If unset, runs scripts/python-script.py */
   path: string;
 
@@ -39,10 +39,10 @@ export type PDF2MarkdownNodeData = {
 // import the entire Rivet core library in your plugin.
 export default function (rivet: typeof Rivet) {
   // This is your main node implementation. It is an object that implements the PluginNodeImpl interface.
-  const nodeImpl: PluginNodeImpl<PDF2MarkdownNode> = {
+  const nodeImpl: PluginNodeImpl<HTML2MarkdownNode> = {
     // This should create a new instance of your node type from scratch.
-    create(): PDF2MarkdownNode {
-      const node: PDF2MarkdownNode = {
+    create(): HTML2MarkdownNode {
+      const node: HTML2MarkdownNode = {
         // Use rivet.newId to generate new IDs for your nodes.
         id: rivet.newId<NodeId>(),
 
@@ -52,10 +52,10 @@ export default function (rivet: typeof Rivet) {
         },
 
         // This is the default title of your node.
-        title: "PDF to Markdown",
+        title: "HTML to Markdown",
 
         // This must match the type of your node.
-        type: "PDF2Markdown",
+        type: "HTML2Markdown",
 
         // X and Y should be set to 0. Width should be set to a reasonable number so there is no overflow.
         visualData: {
@@ -70,7 +70,7 @@ export default function (rivet: typeof Rivet) {
     // This function should return all input ports for your node, given its data, connections, all other nodes, and the project. The
     // connection, nodes, and project are for advanced use-cases and can usually be ignored.
     getInputDefinitions(
-      data: PDF2MarkdownNodeData,
+      data: HTML2MarkdownNodeData,
       _connections: NodeConnection[],
       _nodes: Record<NodeId, ChartNode>,
       _project: Project
@@ -81,7 +81,7 @@ export default function (rivet: typeof Rivet) {
         inputs.push({
           id: "path" as PortId,
           dataType: "string",
-          title: "PDF file path",
+          title: "HTML file path",
         });
       }
 
@@ -91,7 +91,7 @@ export default function (rivet: typeof Rivet) {
     // This function should return all output ports for your node, given its data, connections, all other nodes, and the project. The
     // connection, nodes, and project are for advanced use-cases and can usually be ignored.
     getOutputDefinitions(
-      _data: PDF2MarkdownNodeData,
+      _data: HTML2MarkdownNodeData,
       _connections: NodeConnection[],
       _nodes: Record<NodeId, ChartNode>,
       _project: Project
@@ -108,7 +108,7 @@ export default function (rivet: typeof Rivet) {
     // This returns UI information for your node, such as how it appears in the context menu.
     getUIData(): NodeUIData {
       return {
-        contextMenuTitle: "PDF to Markdown",
+        contextMenuTitle: "HTML to Markdown",
         group: "Document Conversion",
         infoBoxBody:
           "This nodes reads a PDF file and converts it to markdown using the pdf2md library.",
@@ -118,14 +118,14 @@ export default function (rivet: typeof Rivet) {
 
     // This function defines all editors that appear when you edit your node.
     getEditors(
-      _data: PDF2MarkdownNodeData
-    ): EditorDefinition<PDF2MarkdownNode>[] {
+      _data: HTML2MarkdownNodeData
+    ): EditorDefinition<HTML2MarkdownNode>[] {
       return [
         {
           type: "filePathBrowser",
           dataKey: "path",
           useInputToggleDataKey: "usePathInput",
-          label: "PDF File Path",
+          label: "HTML File Path",
         },
       ];
     },
@@ -133,7 +133,7 @@ export default function (rivet: typeof Rivet) {
     // This function returns the body of the node when it is rendered on the graph. You should show
     // what the current data of the node is in some way that is useful at a glance.
     getBody(
-      data: PDF2MarkdownNodeData
+      data: HTML2MarkdownNodeData
     ): string | NodeBodySpec | NodeBodySpec[] | undefined {
       return rivet.dedent`
         ${data.path}
@@ -144,7 +144,7 @@ export default function (rivet: typeof Rivet) {
     // a valid Outputs object, which is a map of port IDs to DataValue objects. The return value of this function
     // must also correspond to the output definitions you defined in the getOutputDefinitions function.
     async process(
-      data: PDF2MarkdownNodeData,
+      data: HTML2MarkdownNodeData,
       inputData: Inputs,
       context: InternalProcessContext
     ): Promise<Outputs> {
@@ -172,8 +172,8 @@ export default function (rivet: typeof Rivet) {
       // 2. The node bundle, which contains the node entry point and any node-only code
       // You are allowed to dynamically import the node entry point from the isomorphic bundle (in the process function)
       const module = await import("../nodeEntry");
-      const convertPdfToMd = module.convertPdfToMd;
-      const output = await convertPdfToMd(path);
+      const convertHTMLToMd = module.convertHTMLToMd;
+      const output = await convertHTMLToMd(path);
 
       return {
         ["output" as PortId]: {
@@ -188,7 +188,7 @@ export default function (rivet: typeof Rivet) {
   // PluginNodeDefinition object.ˇ
   const nodeDefinition = rivet.pluginNodeDefinition(
     nodeImpl,
-    "PDF to Markdown"
+    "HTML to Markdown"
   );
 
   // This definition should then be used in the `register` function of your plugin definition.
