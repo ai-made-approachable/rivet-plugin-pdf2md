@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "@ironclad/rivet-core": "latest",
-    "@opendocsg/pdf2md": "^0.1.28"
+    "@opendocsg/pdf2md": "^0.1.28",
+    "turndown": "^7.1.2"
   },
   "devDependencies": {
     "esbuild": "^0.19.2",
