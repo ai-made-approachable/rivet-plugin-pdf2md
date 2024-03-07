@@ -1,2 +1,2 @@
 declare module '@opendocsg/pdf2md';
-declare module '@mixmark-io/turndown';
+declare module '@crosstype/node-html-markdown';
