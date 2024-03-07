@@ -1,12 +1,17 @@
 import fs from 'fs';
-import TurndownService from '@mixmark-io/turndown;
+import { NodeHtmlMarkdown } from 'node-html-markdown';
 
 export async function convertHTMLToMd(filePath: string): Promise<string> {
 
   const htmlBuffer = fs.readFileSync(filePath);
 
   try {
-    const text = await TurndownService.turndown(htmlBuffer)
+    const text = NodeHtmlMarkdown.translate(
+      /* html */ htmlBuffer.toString(), // Convert htmlBuffer to string
+      /* options (optional) */ {},
+      /* customTranslators (optional) */ undefined,
+      /* customCodeBlockTranslators (optional) */ undefined
+    );
     return text;
   } catch (err) {
     console.error(err);

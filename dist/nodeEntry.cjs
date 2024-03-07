@@ -2733,6 +2733,7 @@ var require_pdf2md = __commonJS({
 // src/nodeEntry.ts
 var nodeEntry_exports = {};
 __export(nodeEntry_exports, {
+  convertHTMLToMd: () => convertHTMLToMd,
   convertPdfToMd: () => convertPdfToMd
 });
 module.exports = __toCommonJS(nodeEntry_exports);
@@ -2750,7 +2751,32 @@ async function convertPdfToMd(filePath) {
     return "";
   }
 }
+
+// src/impl/runHTML2md.ts
+var import_fs2 = __toESM(require("fs"), 1);
+var import_node_html_markdown = require("node-html-markdown");
+async function convertHTMLToMd(filePath) {
+  const htmlBuffer = import_fs2.default.readFileSync(filePath);
+  try {
+    const text = import_node_html_markdown.NodeHtmlMarkdown.translate(
+      /* html */
+      htmlBuffer.toString(),
+      // Convert htmlBuffer to string
+      /* options (optional) */
+      {},
+      /* customTranslators (optional) */
+      void 0,
+      /* customCodeBlockTranslators (optional) */
+      void 0
+    );
+    return text;
+  } catch (err) {
+    console.error(err);
+    return "";
+  }
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  convertHTMLToMd,
   convertPdfToMd
 });
