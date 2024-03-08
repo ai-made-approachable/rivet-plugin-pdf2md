@@ -53,7 +53,7 @@ function PDF2MarkdownNode_default(rivet) {
         contextMenuTitle: "PDF to Markdown",
         group: "Document Conversion",
         infoBoxBody: "This nodes reads a PDF file and converts it to markdown using the pdf2md library.",
-        infoBoxTitle: "Converts a PDF documents to Markdown"
+        infoBoxTitle: "Converts PDF documents to Markdown"
       };
     },
     // This function defines all editors that appear when you edit your node.
@@ -164,8 +164,8 @@ function HTML2MarkdownNode_default(rivet) {
       return {
         contextMenuTitle: "HTML to Markdown",
         group: "Document Conversion",
-        infoBoxBody: "This nodes reads a PDF file and converts it to markdown using the pdf2md library.",
-        infoBoxTitle: "Converts a PDF documents to Markdown"
+        infoBoxBody: "This nodes reads an HTML file and converts it to markdown using the node-html-markdown library.",
+        infoBoxTitle: "Converts HTML documents to Markdown"
       };
     },
     // This function defines all editors that appear when you edit your node.
